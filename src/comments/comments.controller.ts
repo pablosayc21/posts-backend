@@ -1,4 +1,45 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { CommentsService } from './comments.service';
+import { Param, Query } from '@nestjs/common';
+import { CreateCommentDto, UpdateCommentDto } from './dto/comment.dto';
+import { CommentQueryDto } from './dto/queries.dto';
 
 @Controller('comments')
-export class CommentsController {}
+export class CommentsController {
+    constructor(private commentService: CommentsService) {}
+
+    //Plural
+    @Get()
+    async findAll(){
+        return this.commentService.findAll();
+    }
+
+    @Get()
+    async find(@Query() query: CommentQueryDto) {
+        return this.commentService.find(query);
+    }
+
+    @Post()
+    async create(@Body() createCommentDto: CreateCommentDto) {
+        return this.commentService.create(createCommentDto);
+    }
+
+
+    //Singular
+    @Get(':id')
+    async findOne(@Param('id') id: string) {
+        return this.commentService.findOne(id);
+    }
+
+    
+
+    @Put(':id')
+    async update(@Param('id') id : string, @Body() updateCommentDto: UpdateCommentDto) {
+        return this.commentService.update(id, updateCommentDto);
+    }
+
+    @Delete(':id')
+    async remove(@Param('id') id: string) {
+        return this.commentService.remove(id);
+    }
+}
