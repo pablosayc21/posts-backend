@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateCommentDto, UpdateCommentDto } from './dto/comment.dto';
 import { Types } from 'mongoose';
 import { CommentQueryDto } from './dto/queries.dto';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class CommentsService {
@@ -35,15 +36,21 @@ export class CommentsService {
     }
 
     async findOne(id: string) {
-        return this.commentModel.findById(id).exec();
+        const comment = await this.commentModel.findById(id).exec()
+        if(!comment) throw new NotFoundException('Comment not found')
+        return comment;
     }
 
     async update(id: string, updateCommentDto: UpdateCommentDto) {
-        return this.commentModel.findByIdAndUpdate(id, updateCommentDto, { new: true }).exec();
+        const comment = await this.commentModel.findByIdAndUpdate(id, updateCommentDto, { new: true }).exec();
+        if(!comment) throw new NotFoundException('Comment not found')
+        return comment;
     }
 
     async remove(id: string) {
-        return this.commentModel.findByIdAndDelete(id).exec();
+        const comment = await this.commentModel.findByIdAndDelete(id).exec()
+        if(!comment) throw new NotFoundException('Comment not found')
+        return comment;
     }
 
     async findByPostId(postId: string) {

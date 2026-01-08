@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Post } from './schemas/post.schema';
 import { Model } from 'mongoose';
 import { CreatePostDto, UpdatePostDto } from './dto/post.dto';
+import { NotFoundException } from '@nestjs/common';
 @Injectable()
 export class PostsService {
 
@@ -22,15 +23,21 @@ export class PostsService {
     }
 
     async findOne(id:string) {
-        return this.postModel.findById(id).exec();
+        const post = await this.postModel.findById(id).exec();
+        if(!post) throw new NotFoundException('Post not found')
+        return post;
     }
 
     async update(id: string, updatePostDto: UpdatePostDto) {
-        return this.postModel.findByIdAndUpdate(id, updatePostDto, { new: true }).exec();
+        const post = await this.postModel.findByIdAndUpdate(id, updatePostDto, { new: true }).exec();
+        if(!post) throw new NotFoundException('Post not found')
+        return post;
     }
 
     async remove(id: string) {
-        return this.postModel.findByIdAndDelete(id).exec();
+        const post = await this.postModel.findByIdAndDelete(id).exec()
+        if(!post) throw new NotFoundException('Post not found')
+        return post;
     }
 
     async insertMany(createPostDto: CreatePostDto[]) {
