@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostsModule } from './posts/posts.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -19,7 +20,9 @@ import { PostsModule } from './posts/posts.module';
       }),
     }),
 
-    PostsModule
+    PostsModule,
+
+    CommentsModule
     
   ],
   controllers: [AppController],
