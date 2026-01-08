@@ -1,5 +1,5 @@
-import { IsString, IsNotEmpty, MinLength, IsArray, ValidateNested } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsString, IsNotEmpty, MinLength, IsMongoId } from 'class-validator';
+
 export class CreatePostDto {
     
     @IsString()

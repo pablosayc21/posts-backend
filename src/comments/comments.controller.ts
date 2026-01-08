@@ -3,7 +3,7 @@ import { CommentsService } from './comments.service';
 import { Param, Query } from '@nestjs/common';
 import { CreateCommentDto, UpdateCommentDto } from './dto/comment.dto';
 import { CommentQueryDto } from './dto/queries.dto';
-
+import { MongoIdParamDto } from 'src/common/dto/common.dto';
 @Controller('comments')
 export class CommentsController {
     constructor(private commentService: CommentsService) {}
@@ -27,19 +27,19 @@ export class CommentsController {
 
     //Singular
     @Get(':id')
-    async findOne(@Param('id') id: string) {
-        return this.commentService.findOne(id);
+    async findOne(@Param() params: MongoIdParamDto) {
+        return this.commentService.findOne(params.id);
     }
 
     
 
     @Put(':id')
-    async update(@Param('id') id : string, @Body() updateCommentDto: UpdateCommentDto) {
-        return this.commentService.update(id, updateCommentDto);
+    async update(@Param() params: MongoIdParamDto, @Body() updateCommentDto: UpdateCommentDto) {
+        return this.commentService.update(params.id, updateCommentDto);
     }
 
     @Delete(':id')
-    async remove(@Param('id') id: string) {
-        return this.commentService.remove(id);
+    async remove(@Param() params: MongoIdParamDto) {
+        return this.commentService.remove(params.id);
     }
 }
