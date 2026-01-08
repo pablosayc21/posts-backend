@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Post } from './schemas/post.schema';
 import { Model } from 'mongoose';
-import { CreatePostDto } from './dto/post.dto';
+import { CreatePostDto, UpdatePostDto } from './dto/post.dto';
 @Injectable()
 export class PostsService {
 
@@ -24,5 +24,14 @@ export class PostsService {
     async findOne(id:string) {
         return this.postModel.findById(id).exec();
     }
+
+    async update(id: string, updatePostDto: UpdatePostDto) {
+        return this.postModel.findByIdAndUpdate(id, updatePostDto, { new: true }).exec();
+    }
+
+    async remove(id: string) {
+        return this.postModel.findByIdAndDelete(id).exec();
+    }
+
 
 }
