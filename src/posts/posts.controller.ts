@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { Param } from '@nestjs/common';
 import { CreatePostDto, UpdatePostDto } from './dto/post.dto';
+import { ParseArrayPipe } from '@nestjs/common';
 @Controller('posts')
 export class PostsController {
 
@@ -18,6 +19,13 @@ export class PostsController {
     @Post()
     async create(@Body() createPostDto: CreatePostDto) {
         return this.postService.create(createPostDto);
+    }
+
+    @Post('bulk')
+    async insertMany(@Body(
+        new ParseArrayPipe({items: CreatePostDto,whitelist: true,forbidNonWhitelisted: true,})
+    )createPostDtos: CreatePostDto[],) {
+        return this.postService.insertMany(createPostDtos);
     }
 
 

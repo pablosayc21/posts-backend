@@ -33,5 +33,11 @@ export class PostsService {
         return this.postModel.findByIdAndDelete(id).exec();
     }
 
+    async insertMany(createPostDto: CreatePostDto[]) {
+        return this.postModel.insertMany(createPostDto);
+    }
+
+
+
 
 }
