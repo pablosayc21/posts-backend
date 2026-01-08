@@ -19,3 +19,23 @@ export class CreateCommentDto {
     body: string;
 
 }
+
+export class UpdateCommentDto {
+    
+    @IsMongoId()
+    postId: string;
+
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(2)
+    name: string;
+
+    @IsEmail()
+    email: string;
+
+    @IsString()
+    @IsNotEmpty()
+    @MinLength(1)
+    body: string;
+
+}
