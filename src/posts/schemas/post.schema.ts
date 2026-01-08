@@ -4,13 +4,13 @@ import { Document } from 'mongoose';
 @Schema({ timestamps: true })
 export class Post extends Document {
 
-  @Prop({required: true})
+  @Prop({ required: true })
   title: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   body: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   author: string;
 }
 
