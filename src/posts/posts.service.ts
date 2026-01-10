@@ -4,11 +4,13 @@ import { Post } from './schemas/post.schema';
 import { Model } from 'mongoose';
 import { CreatePostDto, UpdatePostDto } from './dto/post.dto';
 import { NotFoundException } from '@nestjs/common';
+import { Comment } from 'src/comments/schemas/comment.schema';
 @Injectable()
 export class PostsService {
 
     constructor(
         @InjectModel(Post.name) private postModel: Model<Post>,
+        @InjectModel(Comment.name) private commentModel: Model<Comment>
     ) {
 
     }
@@ -37,6 +39,7 @@ export class PostsService {
     async remove(id: string) {
         const post = await this.postModel.findByIdAndDelete(id).exec()
         if(!post) throw new NotFoundException('Post not found')
+        await this.commentModel.deleteMany({ postId: id }).exec();
         return post;
     }
 

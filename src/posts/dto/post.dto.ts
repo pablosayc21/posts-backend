@@ -4,12 +4,12 @@ export class CreatePostDto {
     
     @IsString()
     @IsNotEmpty()
-    @MinLength(1)
+    @MinLength(3)
     title: string;
 
     @IsString()
     @IsNotEmpty()
-    @MinLength(1)
+    @MinLength(10)
     body: string;
 
     @IsString()
