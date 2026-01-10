@@ -25,10 +25,8 @@ export class CommentsService {
         const query: any = {};
 
         if (filters.postId) {
-            query.postId = new Types.ObjectId(filters.postId);
+            query.postId = filters.postId;
         }
-
-        console.log(query)
 
         return this.commentModel.find(query).exec();
     }

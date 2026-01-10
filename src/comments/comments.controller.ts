@@ -13,6 +13,8 @@ export class CommentsController {
     //Plural
     @Get()
     async find(@Query() query: CommentQueryDto) {
+        console.log("Queries")
+        console.log(query)
         return this.commentService.find(query);
     }
 
