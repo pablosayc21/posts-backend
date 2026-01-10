@@ -28,6 +28,8 @@ export class CommentsService {
             query.postId = new Types.ObjectId(filters.postId);
         }
 
+        console.log(query)
+
         return this.commentModel.find(query).exec();
     }
     

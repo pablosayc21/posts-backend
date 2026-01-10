@@ -4,16 +4,13 @@ import { Param, Query } from '@nestjs/common';
 import { CreateCommentDto, UpdateCommentDto } from './dto/comment.dto';
 import { CommentQueryDto } from './dto/queries.dto';
 import { MongoIdParamDto } from 'src/common/dto/common.dto';
+import { Logger } from '@nestjs/common';
 @Controller('comments')
 export class CommentsController {
+    
     constructor(private commentService: CommentsService) {}
 
     //Plural
-    @Get()
-    async findAll(){
-        return this.commentService.findAll();
-    }
-
     @Get()
     async find(@Query() query: CommentQueryDto) {
         return this.commentService.find(query);
