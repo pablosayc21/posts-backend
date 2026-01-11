@@ -24,7 +24,7 @@ echo "MONGO_URI=mongodb://localhost:27017/posts-db" > .env
 npm run start:dev
 ```
 ## Ejecución
-Ejecuta `npm run start:dev` para un servidor de desarrollo. Entra `http://localhost:3000/` o `http://127.0.0.1/`. La aplicación se recargará automáticamente si hay algún cambio en los archivos. El frontend de la aplicación es el siguiente: https://github.com/pablosayc21/posts-frontend.git.
+Ejecuta `npm run start:dev` para un servidor de desarrollo. Entra `http://localhost:3000/` o `http://127.0.0.1:3000/`. La aplicación se recargará automáticamente si hay algún cambio en los archivos. El frontend de la aplicación es el siguiente: https://github.com/pablosayc21/posts-frontend.git.
 
 
 ## Incluye
