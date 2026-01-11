@@ -2,29 +2,24 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-## 📋 Guía de instalación
+## 📋 Guía de instalación y ejecución
+
+### Requisitos
+- Docker
+- Docker Compose
 
 ```bash
-# 1. Instalar NestJS CLI version 11.0.0 o mayor (Si no lo tenía previamente instalado)
-npm install -g @nestjs/cli@11.0.0
-
-# 2. Clonar el repositorio
+# 1. Clonar el repositorio
 git clone https://github.com/pablosayc21/posts-backend.git
 
-# 3. Ingresar al directorio
+# 2. Ingresar al directorio
 cd posts-backend
 
-# 4. Instalar dependencias
-npm install
-
-# 5. Crear archivo .env con las variables de entorno
-echo "MONGO_URI=mongodb://localhost:27017/posts-db" > .env
-
-# 6. Iniciar el servidor en modo desarrollo
-npm run start:dev
+# 3. Levantar el backend y MongoDB
+docker-compose up --build
 ```
 ## Ejecución
-Ejecuta `npm run start:dev` para un servidor de desarrollo. Entra `http://localhost:3000/` o `http://127.0.0.1:3000/`. La aplicación se recargará automáticamente si hay algún cambio en los archivos. El frontend de la aplicación es el siguiente: https://github.com/pablosayc21/posts-frontend.git.
+El servidor corre en `http://localhost:3000/` o `http://127.0.0.1:3000/`. La aplicación se recargará automáticamente si hay algún cambio en los archivos. El frontend de la aplicación es el siguiente: https://github.com/pablosayc21/posts-frontend.git.
 
 
 ## Incluye
