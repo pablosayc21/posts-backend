@@ -52,7 +52,7 @@ export class PostsService {
         const { page, limit } = pagination;
         const skip = (pagination.page - 1) * pagination.limit;
         const [data, total] = await Promise.all([
-            this.postModel.find().skip(skip).limit(limit).exec(),
+            this.postModel.find().sort({ createdAt: -1 }).skip(skip).limit(limit).exec(),
             this.postModel.countDocuments(),
         ]);
         return { data, total, page, limit, totalPages: Math.ceil(total / limit),};
