@@ -18,6 +18,17 @@ cd posts-backend
 # 3. Levantar el backend y MongoDB
 docker-compose up --build
 ```
+El backend quedará disponible en:
+
+`http://localhost:3000`
+
+MongoDB se ejecuta internamente en el contenedor:
+
+`mongodb://mongo:27017/posts-db`
+
+Para detener los contenedores:
+
+`docker-compose down`
 ## Ejecución
 El servidor corre en `http://localhost:3000/` o `http://127.0.0.1:3000/`. La aplicación se recargará automáticamente si hay algún cambio en los archivos. El frontend de la aplicación es el siguiente: https://github.com/pablosayc21/posts-frontend.git.
 
