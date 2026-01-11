@@ -4,11 +4,19 @@ import { Param } from '@nestjs/common';
 import { CreatePostDto, UpdatePostDto } from './dto/post.dto';
 import { ParseArrayPipe } from '@nestjs/common';
 import { MongoIdParamDto } from 'src/common/dto/common.dto';
+import { Query } from '@nestjs/common';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 @Controller('posts')
 export class PostsController {
 
     constructor(private postService: PostsService) {
 
+    }
+
+    //Paginado
+    @Get('pg')
+    async getPage(@Query() query: PaginationDto){
+        return this.postService.getPage(query)
     }
 
     //Plural

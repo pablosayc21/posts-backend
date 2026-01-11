@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreatePostDto, UpdatePostDto } from './dto/post.dto';
 import { NotFoundException } from '@nestjs/common';
 import { Comment } from 'src/comments/schemas/comment.schema';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 @Injectable()
 export class PostsService {
 
@@ -47,7 +48,14 @@ export class PostsService {
         return this.postModel.insertMany(createPostDto);
     }
 
-
-
+    async getPage(pagination: PaginationDto) {
+        const { page, limit } = pagination;
+        const skip = (pagination.page - 1) * pagination.limit;
+        const [data, total] = await Promise.all([
+            this.postModel.find().skip(skip).limit(limit).exec(),
+            this.postModel.countDocuments(),
+        ]);
+        return { data, total, page, limit, totalPages: Math.ceil(total / limit),};
+    }
 
 }
